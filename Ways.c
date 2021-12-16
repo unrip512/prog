@@ -33,7 +33,7 @@ int main (int argc, char * argv[]) {
        else {
            p2[j] = 1;
        }
-    }
+    } 
 
     for(int j = 0; j < M; j++) {
        if (p[N*j] == '#') {
