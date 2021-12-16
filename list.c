@@ -144,7 +144,7 @@ int main() {
     elem = ReadEl(45);
     list = add_elem(list, elem);
     
-    Print_list(list);
+    Print_list(list);     //выводит 45 7 5 1 
 
 
     clean_list(list);
