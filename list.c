@@ -24,14 +24,13 @@ struct Node * ReadEl (Data x) {
     k -> prev = NULL;
 
     return k; 
-
 }
 
 
 // функция, которая принимает список и новый элемент и вписывает этот элемент в нужное место списка (располагаем в порядке убывания)
 struct Node * add_elem(struct Node * list, struct Node * elem) {
 
-    // проверяем, если списко пуст
+    // проверяем, если списк пуст
     if(list == NULL) {
         list = elem;
         elem -> prev = elem;
@@ -75,7 +74,7 @@ struct Node * add_elem(struct Node * list, struct Node * elem) {
         while((temp2 -> data) > x) {
 
             temp2 = temp2 -> next;
-        }
+        }				//теперь в переменной temp2 записан адрес элемента, перед которым мы должны поставить новый элемент
 
         elem -> next = temp2;
         elem -> prev = temp2 -> prev;
