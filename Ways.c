@@ -1,19 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main () {
+int main (int argc, char * argv[]) {
 
     int N, M;
 
-    scanf("%d%d", &M, &N);
+    FILE * in = fopen(argv[1], "r");
+    fscanf(in, "%d%d", &M, &N);
+    FILE * out = fopen("exp1.txt", "w");
 
     char c;
 
     char * p = (char *)malloc((M * N) * sizeof(char));
 
     for(int i = 0; i < (M*N); i++) {
-        c = getchar();
-        p[i] = getchar();
+        c = fgetc(in);
+        p[i] = fgetc(in);
 
     }
 
@@ -23,9 +25,6 @@ int main () {
         p2[i] = 0;
     }
 
-    
-
-    //int ind1 = 0, ind2 = 0;
 
     for(int j = 0; j < N; j++) {
        if (p[j] == '#') {
@@ -54,9 +53,12 @@ int main () {
     }
 
 
-    printf("%d\n", p2[N*M -1]);
+    fprintf(out, "Number of ways : %d\n", p2[N*M -1]);
 
 
     free(p);
     free(p2);
+
+    fclose(in);
+    fclose(out);
 }
