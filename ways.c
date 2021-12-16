@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//считывает данные из файла, имя которого передано как аргумент командной строки
+
 int main (int argc, char * argv[]) {
 
     int N, M;
