@@ -25,6 +25,7 @@ int main (int argc, char * argv[]) {
         p2[i] = 0;
     }
 
+    
 
     for(int j = 0; j < N; j++) {
        if (p[j] == '#') {
