@@ -48,7 +48,6 @@ int main() {
                 "add rdx, 32;\n"
                 
                 "mov [rax + (rcx-1)], rdx;\n"
-                "xor zf, zf;\n"
 
 
             "L3:;\n"
