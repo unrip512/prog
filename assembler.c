@@ -19,8 +19,6 @@ int main() {
         i++;
     }
 
-    printf("%d\n", i);
-
     
 
     long long  key = 'a';
