@@ -18,7 +18,6 @@ int main() {
         A[i] = c;
         i++;
     }
-
     
 
     long long  key = 'a';
@@ -30,25 +29,27 @@ int main() {
         ".intel_syntax noprefix \n"
 
         "L:;\n"
-            "mov rdx, [rax + (rcx-1)];\n"
+            "xor rdx, rdx;\n"
+            "mov dl, [rax + (rcx-1)];\n"
+            
+            "cmp rdx, 65;\n"
+            "JL L3;\n"
+            
             "cmp rbx, rdx;\n"
             "JG L2;\n"                                                // k > A[i] => буква большая
 
             "L1:;\n" //буква была маленькой, должна стать большой
-                "sub rdx, 32;\n"
-                
-                "mov [rax + (rcx -1)], rdx;\n"
+                "sub dl, 32;\n"
                 "jmp L3;\n"
 
 
 
             "L2:;\n" //буква была большая, должна стать маленькой
-                "add rdx, 32;\n"
-                
-                "mov [rax + (rcx-1)], rdx;\n"
+                "add dl, 32;\n"
 
 
-            "L3:;\n"
+            "L3: ;\n"
+                "mov [rax + (rcx-1)], dl;\n"
         "loop L;\n"
 
         ".att_syntax noprefix"
@@ -56,10 +57,9 @@ int main() {
         : "c"(i), "a"(A_), "b"(key)
     ); 
 
-    printf("%s", A);
+    printf("%s\n", A);
 
 
     
 
 }
-
