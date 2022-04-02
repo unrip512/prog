@@ -4,9 +4,25 @@
 
 
 
+//функция, которая на вход принимает строку-число и возвращает число 
+
+int conv(char mas[]){
+    int len = strlen(mas);  // len - длина строки с цифрами ( или колличество разрядов числа)
+    int number = 0;        // number - число, которое записано в строке, только уже в виде int 
+    int degree = 1;        // хранит показатель степени 10-ки. 
+
+    for(int i=(len-1); i >= 0; i--) {
+        number += (mas[i] - '0') * degree;
+        degree *= 10; 
+    }
+
+    return number;
+}
+
+
 int main() {
 
-    int reg_val[4] = {1, 0, 0, 0};
+    int reg_val[4] = {0, 0, 0, 0};
     char reg[4][4] = {"eax\0", "ebx\0", "ecx\0", "edx\0"};
 
     char in_com[4];
@@ -35,7 +51,10 @@ int main() {
 
 
             if((number[0] >= '0') & (number[0] <= '9')) {
-                num = number[0] - '0';
+                num = conv(number);
+            }
+            if((number[0] == '-') & (number[1] >= '0') & (number[1] <= '9')) {
+                    num = conv(&number[1])*(-1);
             }
             else {
                 switch (number[1]) {
@@ -46,13 +65,11 @@ int main() {
                 }
             }    
 
-            
-
             switch(in_com[0]) {
                 case 'm': reg_val[i] = num; break;
                 case 'a': reg_val[i] = reg_val[i] + num; break;
                 case 's': reg_val[i] -= num; break;
-                default: ind = 1; printf("INPUT ERROR");
+                default: ind = 1; printf("input error");
             }
 
 
@@ -62,11 +79,12 @@ int main() {
             printf("\n");
             
         }
-        else {
+        else { 
             ind = 1;
         }
     }
     
 }
+
 
 
