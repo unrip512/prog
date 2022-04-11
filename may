@@ -12,8 +12,8 @@ mov rdi, 0
 mov rsi, st    
 mov rdx, 20  
 syscall  
-ret  
- 
+
+
 xor rcx, rcx
 mov rcx, 20
 xor rbx, rbx
