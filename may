@@ -1,5 +1,7 @@
 global main
-N equ 21
+N equ 20
+zero equ 48
+nine equ 57
  
 section .bss
 st: resb N 
@@ -10,12 +12,12 @@ main:
 mov rax, 0          
 mov rdi, 0          
 mov rsi, st    
-mov rdx, 20  
+mov rdx, N
 syscall  
 
 
 xor rcx, rcx
-mov rcx, 20
+mov rcx, N
 xor rbx, rbx
 mov rbx, st
 xor rdx, rdx
@@ -25,13 +27,13 @@ L:
  
     mov dl, [rbx + (rcx-1)]
  
-    cmp dl, 48
+    cmp dl, zero
     JL L3
  
-    cmp dl, 57
+    cmp dl, nine
     JG L3
  
-    cmp dl, 48
+    cmp dl, zero
     JE L2
  
     L1:
@@ -41,7 +43,7 @@ L:
  
  
     L2: 
-        mov dl, 57
+        mov dl, nine
  
  
     L3: 
