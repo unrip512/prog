@@ -1,0 +1,56 @@
+global main
+N equ 21
+ 
+section .bss
+st: resb N 
+ 
+section .text
+main: 
+ 
+mov rax, 0          
+mov rdi, 0          
+mov rsi, st    
+mov rdx, 20  
+syscall  
+ret  
+ 
+xor rcx, rcx
+mov rcx, 20
+xor rbx, rbx
+mov rbx, st
+xor rdx, rdx
+ 
+ 
+L:
+ 
+    mov dl, [rbx + (rcx-1)]
+ 
+    cmp dl, 48
+    JL L3
+ 
+    cmp dl, 57
+    JG L3
+ 
+    cmp dl, 48
+    JE L2
+ 
+    L1:
+    sub dl, 1
+    jmp L3
+ 
+ 
+ 
+    L2: 
+        mov dl, 57
+ 
+ 
+    L3: 
+        mov [rbx + (rcx-1)], dl
+loop L
+ 
+mov rax, 1        
+mov rdi, 1          
+mov rsi, rbx
+mov rdx, N          
+syscall            
+ret
