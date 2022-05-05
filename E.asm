@@ -24,14 +24,14 @@ main:
 	call scanf
 
 
-xor edx, edx
-xor rax, rax
+	xor edx, edx
+	xor rax, rax
 
-mov eax, [var_1]
-mov ebx, [var_2]
-cdq      		;расширяем eax на случай отрицательных чисел
-div ebx
-mov [var_1], edx
+	mov eax, [var_1]
+	mov ebx, [var_2]
+	cdq      		;расширяем eax на случай отрицательных чисел
+	idiv ebx
+	mov [var_1], edx
 
         
 	
