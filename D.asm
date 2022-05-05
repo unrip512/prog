@@ -22,12 +22,13 @@ main:
 
 
 
-xor rdx, rdx
-xor rax, rax
-mov rax, [var_1]
-mov rbx, [var_2]
-idiv rbx
-mov [var_1], rax
+	xor rdx, rdx
+	xor rax, rax
+	mov eax, [var_1]
+	mov ebx, [var_2]
+	cdq	       		;расшияем eax на случай отрицательных чисел
+	idiv ebx
+	mov [var_1], eax
 
         
 	
