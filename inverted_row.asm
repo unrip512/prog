@@ -26,37 +26,37 @@ main:
 	mov rax, 0	
 	call scanf
   
-  xor rcx, rcx
-  mov rcx, [var]
-  mov rdx, [var]
+  	xor rcx, rcx
+  	mov rcx, [var]
+  	mov rdx, [var]
   
-  cmp rcx, 0
-  je L2
-  
-  L:
-  mov rdi, format		
+	cmp rcx, 0
+	je L2
+
+	L:
+	mov rdi, format		
 	mov rsi, var	
 	mov rax, 0			
 	call scanf
-  
-  sub rcx, 1
-  mov rbx, [var]
-  mov [var_2 + 4 * rcx], rbx
-  add rcx, 1
-  loop L
 
-mov rcx, rdx
+	sub rcx, 1
+	mov rbx, [var]
+	mov [var_2 + 4 * rcx], rbx
+	add rcx, 1
+	loop L
 
-L1:
-mov rbx, rdx
-sub rbx, rcx
-mov rdi, format		
-mov rsi, [var_2 + 4 * rbx]	
-mov rax, 0
-call printf
-loop L1
+	mov rcx, rdx
 
-L2:
+	L1:
+	mov rbx, rdx
+	sub rbx, rcx
+	mov rdi, format		
+	mov rsi, [var_2 + 4 * rbx]	
+	mov rax, 0
+	call printf
+	loop L1
+
+	L2:
 
 
 xor rax, rax
