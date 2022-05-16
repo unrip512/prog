@@ -99,3 +99,7 @@ ret
 format: db "%d", 10, 0
 message_1: db "YES", 10
 message_2: db "NO", 10
+
+
+
+;итог: если формат считываемых данных сменить с int на long long unsigned,  и использовать флаг переноса CF, то все работает
