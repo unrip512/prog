@@ -17,7 +17,7 @@ extern printf
 
 section .bss
 var: resd 1
-var_2: resd 10   ; по моей логике тут должно быть 10000 (ибо N<= 10000), но программа не работает даже на тестах, где всего 3 числа подается, так что проблема точно не тут 
+var_2: resd 10000  ; по моей логике тут должно быть 10000 (ибо N<= 10000), но программа не работает даже на тестах, где всего 3 числа подается, так что проблема точно не тут 
 
 section .text
 main:
@@ -28,30 +28,33 @@ main:
   
   	xor rcx, rcx
   	mov rcx, [var]
-  	mov rdx, [var]
-  
+	
 	cmp rcx, 0
 	je L2
-
-	L:
+	
+	dec rcx
+	
+  	mov rdx, 0
+  
+	L:	
 	mov rdi, format		
 	mov rsi, var	
 	mov rax, 0			
 	call scanf
-
-	sub rcx, 1
+	
+	
 	mov rbx, [var]
-	mov [var_2 + 4 * rcx], rbx
-	add rcx, 1
+	mov[var_2 + 4 * rdx], rbx
+	add rdx, 1
 	loop L
 
 	mov rcx, rdx
 
 	L1:
-	mov rbx, rdx
-	sub rbx, rcx
-	mov rdi, format		
-	mov rsi, [var_2 + 4 * rbx]	
+	
+	
+	mov rdi, format		        ; 1й аргумент для вызова printf
+	mov rsi, [var_2 + 4*rcx]	; 2й аргумент для вызова printf
 	mov rax, 0
 	call printf
 	loop L1
