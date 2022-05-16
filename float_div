@@ -1,0 +1,58 @@
+global main
+extern scanf		; указываем, что будем вызывать библиотечные функции
+extern printf
+
+section .bss
+var_1: resd 2
+var_2: resd 2
+
+section .text
+main:
+	mov rdi, format		; 1й аргумент для вызова scanf
+	mov rsi, var_1		; 2й аргумент для вызова scanf
+	mov rax, 0			; для функций с переменным кол-вом аргументов в rax кладут число вещественных 
+	call scanf
+
+	mov rdi, format		; 1й аргумент для вызова scanf
+	mov rsi, var_2		; 2й аргумент для вызова scanf
+	mov rax, 0			; для функций с переменным кол-вом аргументов в rax кладут число вещественных аргументов
+	call scanf
+
+
+
+xor rdx, rdx
+xor rax, rax
+xor rbx, rbx
+
+mov eax, [var_1]
+mov ebx, [var_2]
+cdq
+idiv ebx
+mov [var_1], eax
+
+mov rdi, format		; 1й аргумент для вызова printf
+	mov rsi, [var_1]	; 2й аргумент для вызова printf
+	mov rax, 0
+	call printf
+
+L1:
+cmp edx, 0
+je L2
+imul edx, 10
+mov rax, rdx
+idiv ebx
+
+mov rdi, format		; 1й аргумент для вызова printf
+mov rsi, rax	; 2й аргумент для вызова printf
+mov rax, 0
+call printf
+
+
+L2:
+
+
+	
+	xor rax, rax
+	ret
+
+format: db "%d", 10, 0
